@@ -1,0 +1,176 @@
+/* Balanced Cyber Dashboard: mix of dark and light surfaces, cyan accents */
+:root{
+  --bg-deep: #071226;
+  --bg-soft: #e9f6ff;
+  --panel-dark: rgba(5,18,35,0.85);
+  --panel-light: rgba(255,255,255,0.95);
+  --muted-dark: rgba(220,235,255,0.95);
+  --muted-light: rgba(30,40,55,0.85);
+  --accent1: #00a3f2;
+  --accent2: #37d7ff;
+  --danger: #ff6b6b;
+  --glass-radius: 14px;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: #072233;
+}
+
+/* base */
+*{box-sizing:border-box}
+html,body{height:100%; margin:0}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(800px 350px at 10% 8%, rgba(3,35,60,0.08), transparent 10%),
+    linear-gradient(180deg,#0c2940 0%, #071226 45%, #0b253a 100%);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  color: var(--muted-dark);
+}
+body::before{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.01) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.01) 1px, transparent 1px);
+  background-size: 360px 360px, 360px 360px;
+  opacity:0.35; mix-blend-mode: overlay;
+}
+
+/* topbar */
+.topbar{ display:flex; align-items:center; justify-content:flex-start; padding:18px 28px; gap:18px; z-index:2 }
+.brand{ display:flex; align-items:center; gap:14px }
+.logo{
+  width:76px; height:76px; border-radius:14px; object-fit:cover;
+  padding:8px; background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(240,246,255,0.96));
+  box-shadow: 0 18px 36px rgba(2,10,20,0.45), inset 0 -6px 12px rgba(0,0,0,0.06);
+  border: 1px solid rgba(255,255,255,0.6);
+}
+.brand-text h1{ margin:0; font-size:18px; font-weight:700; color:#e8f9ff }
+.subtitle{ margin:4px 0 0; font-size:12px; color: rgba(230,245,255,0.8) }
+
+/* main layout */
+.main{ display:flex; gap:28px; margin:18px auto; max-width:1200px; padding:0 20px 40px; align-items:flex-start; z-index:1 }
+.left{ flex:1 }
+.right{ width:360px }
+
+/* left card uses light surface for contrast */
+.left-card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,252,255,0.98));
+  color: var(--muted-light);
+  border-radius:14px; padding:22px;
+  box-shadow: 0 28px 70px rgba(2,8,20,0.35);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* right cards darker */
+.right-card, .history-card{
+  background: linear-gradient(180deg, rgba(6,20,33,0.88), rgba(3,18,30,0.9));
+  color: var(--muted-dark);
+  border-radius:14px; padding:18px;
+  box-shadow: 0 20px 46px rgba(2,8,20,0.55);
+  border: 1px solid rgba(255,255,255,0.02);
+}
+
+/* headings */
+.card h2{ margin:0 0 8px 0; font-size:20px; color: #072233 }
+.sub-hint{ font-size:12px; color: rgba(10,30,40,0.6) }
+
+/* textarea & controls (light) */
+textarea{
+  width:100%; min-height:140px; padding:14px; border-radius:12px; border:1px solid rgba(2,10,20,0.06);
+  font-size:15px; line-height:1.4; resize:vertical; color:#072233; background: linear-gradient(180deg,#ffffff,#f3fbff);
+  box-shadow: 0 12px 24px rgba(1,8,18,0.06);
+}
+.row{ display:flex; gap:12px; align-items:center; margin-top:12px }
+.btn{ padding:12px 16px; border-radius:10px; font-weight:800; cursor:pointer; border:0; font-size:14px }
+.btn.primary{ background: linear-gradient(90deg,var(--accent2), var(--accent1)); color:#021424; box-shadow: 0 12px 30px rgba(0,163,242,0.12); }
+.btn.ghost{ background:transparent; border:1px solid rgba(0,0,0,0.06); color:#072233 }
+.file-btn{ display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:10px; background:transparent; border:1px dashed rgba(5,20,30,0.04) }
+
+/* spinner */
+.spinner{ margin-top:12px; display:flex; align-items:center; gap:10px }
+.spinner svg{ width:30px; height:30px; animation:spin 1s linear infinite }
+.spinner circle{ fill:none; stroke:rgba(2,12,22,0.08); stroke-width:4 }
+@keyframes spin{ to{ transform: rotate(360deg) } }
+
+/* visual area + gauge */
+.visual-area{ margin-top:22px; display:flex; justify-content:center; align-items:center; position:relative }
+.gauge-wrap{ width:340px; height:340px; display:flex; align-items:center; justify-content:center; position:relative; border-radius:12px; }
+.gauge{ width:300px; height:300px; transform: rotate(-90deg); overflow:visible; }
+.gauge-track{ fill:none; stroke: rgba(2,6,12,0.06); stroke-width:9; }
+.gauge-fill{ fill:none; stroke: url(#gBlue); stroke-width:9; stroke-dasharray: 302; stroke-dashoffset:302; transition: stroke-dashoffset 1.1s cubic-bezier(.2,.9,.3,1), transform .25s, filter .25s; filter: drop-shadow(0 12px 40px rgba(0,163,242,0.06)); }
+.gauge-inner{ fill: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(245,251,255,0.98)); stroke: rgba(0,0,0,0.03); stroke-width:1; }
+
+/* center labels (darker text for contrast) */
+.gauge-center{ position:absolute; display:flex; flex-direction:column; align-items:center; justify-content:center; pointer-events:none }
+.gauge-value{ font-weight:900; font-size:40px; color: #021424 }
+.gauge-label{ margin-top:6px; color: rgba(4,28,36,0.8) }
+
+/* gauge states */
+.gauge-wrap.spam .gauge-fill{ stroke: url(#gDanger); animation: glowDanger 1s ease-in-out infinite alternate; }
+@keyframes glowDanger { from{ filter: drop-shadow(0 8px 18px rgba(255,80,80,0.06)) } to{ filter: drop-shadow(0 26px 60px rgba(255,50,50,0.12)); transform: scale(1.02) } }
+.gauge-wrap.ham .gauge-fill{ animation: glowSafe 1.8s ease-in-out infinite alternate; filter: drop-shadow(0 8px 18px rgba(0,163,242,0.06)); }
+@keyframes glowSafe { from{ filter: drop-shadow(0 8px 18px rgba(0,163,242,0.06)) } to{ filter: drop-shadow(0 24px 54px rgba(0,163,242,0.12)); } }
+
+/* party particles */
+.party{ position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:2 }
+.party .p{ position:absolute; width:8px; height:12px; opacity:0.95; border-radius:2px; animation: fall 1100ms linear forwards; }
+@keyframes fall { 0%{ transform: translateY(-10px) rotate(0deg); opacity:1 } 100%{ transform: translateY(220px) rotate(300deg); opacity:0 } }
+
+/* result card */
+.result-top{ display:flex; gap:14px; align-items:center }
+.result-badge{ width:86px; height:86px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:18px; color:#021420 }
+.result-badge.neutral{ background: linear-gradient(90deg,#aeefff,#9beaff); color:#021420 }
+.result-badge.ham{ background: linear-gradient(90deg,#9ff1e6,#6be3d4) }
+.result-badge.spam{ background: linear-gradient(90deg,#ffb3b3,#ff7b7b) }
+
+/* stats */
+.stats{ display:flex; gap:10px; margin-top:14px }
+.stat{ flex:1; padding:10px; border-radius:8px; background: rgba(255,255,255,0.02); text-align:center }
+.stat-value{ font-size:18px; font-weight:900 }
+.history-list{ margin-top:10px; padding:0; list-style:none; max-height:220px; overflow:auto }
+.history-list li{ padding:10px; border-radius:8px; background: rgba(255,255,255,0.02); margin-bottom:8px; display:flex; justify-content:space-between; gap:12px; align-items:center }
+
+/* footer */
+.footer{ display:flex; justify-content:space-between; gap:12px; padding:14px 28px; align-items:center; font-size:13px; color:rgba(220,235,255,0.7) }
+
+/* responsive */
+@media (max-width:980px){
+  .main{ flex-direction:column; gap:18px; padding:0 16px }
+  .right{ width:auto }
+}
+
+/* ========= FORCE OVERRIDE (ensure gauge center readable) ========= */
+.gauge-wrap .gauge-inner,
+.gauge-inner {
+  fill: #ffffff !important;
+  stroke: rgba(0,163,242,0.28) !important;
+  stroke-width: 2 !important;
+  filter: drop-shadow(0 0 18px rgba(255,255,255,0.65)) !important;
+}
+.gauge-wrap .gauge-fill,
+.gauge-fill {
+  stroke-width: 10 !important;
+  stroke-dasharray: 302 !important;
+  transition: stroke-dashoffset 1.1s cubic-bezier(.2,.9,.3,1) !important;
+  filter: drop-shadow(0 12px 40px rgba(0,163,242,0.30)) !important;
+}
+.gauge-center .gauge-value,
+.gauge-value {
+  font-weight: 900 !important;
+  font-size: 48px !important;
+  color: #00263d !important;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3) !important;
+  letter-spacing: -1px !important;
+}
+.gauge-center .gauge-label,
+.gauge-label {
+  margin-top: 6px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: #003c59 !important;
+  opacity: 0.98 !important;
+}
+.gauge-wrap.spam .gauge-fill { animation: none !important; }
+.gauge-wrap.spam .gauge-fill { stroke: url(#gDanger) !important; filter: drop-shadow(0 24px 54px rgba(255,60,60,0.36)) !important; }
+.gauge-wrap.ham .gauge-fill  { stroke: url(#gBlue)   !important; filter: drop-shadow(0 20px 46px rgba(0,163,242,0.30)) !important; }

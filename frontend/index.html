@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Spam Detector — Cyber Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=20251123.final2">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <img id="brandLogo" class="logo" alt="AI Spam Detector logo"
+             src="https://cdn-icons-png.flaticon.com/512/2889/2889676.png" />
+        <div class="brand-text">
+          <h1>AI Spam Detector</h1>
+          <p class="subtitle">Naive Bayes (C++) • Local Node API</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="left">
+        <div class="card left-card">
+          <div class="card-header">
+            <h2>Check a message</h2>
+            <div class="sub-hint">Paste text or upload CSV (first column used)</div>
+          </div>
+
+          <textarea id="message" placeholder="Paste SMS or text message here..." aria-label="Message"></textarea>
+
+          <div class="row">
+            <button id="detectBtn" class="btn primary">Detect</button>
+            <button id="clearBtn" class="btn ghost">Clear</button>
+            <label class="file-btn">
+              Batch
+              <input id="csvInput" type="file" accept=".csv" />
+            </label>
+          </div>
+
+          <div id="spinner" class="spinner hidden" aria-hidden="true" title="Waiting for server">
+            <svg viewBox="0 0 50 50"><circle cx="25" cy="25" r="20"></circle></svg>
+          </div>
+
+          <div class="visual-area">
+            <div class="gauge-wrap neutral">
+              <svg class="gauge" viewBox="0 0 120 120" aria-hidden="true">
+                <defs>
+                  <linearGradient id="gBlue" x1="0%" x2="100%">
+                    <stop offset="0%" stop-color="#37d7ff"/>
+                    <stop offset="100%" stop-color="#00a3f2"/>
+                  </linearGradient>
+                  <linearGradient id="gDanger" x1="0%" x2="100%">
+                    <stop offset="0%" stop-color="#ff8b8b"/>
+                    <stop offset="100%" stop-color="#ff4b4b"/>
+                  </linearGradient>
+                </defs>
+                <circle class="gauge-track" cx="60" cy="60" r="48" />
+                <circle class="gauge-fill" cx="60" cy="60" r="48" stroke-linecap="round" />
+                <circle class="gauge-inner" cx="60" cy="60" r="36" />
+              </svg>
+
+              <div class="gauge-center">
+                <div class="gauge-value" id="gaugeValue">--%</div>
+                <div class="gauge-label" id="gaugeLabel">Awaiting check</div>
+              </div>
+            </div>
+
+            <div id="party" class="party"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <aside class="right">
+        <div class="card right-card result-card">
+          <div class="result-top">
+            <div id="resultBadge" class="result-badge neutral">—</div>
+            <div class="result-info">
+              <div id="resultTitle" class="result-title">No result yet</div>
+              <div id="resultText" class="result-text muted">Enter a message and click Detect.</div>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div id="totalCount" class="stat-value">0</div>
+              <div class="stat-label">Total</div>
+            </div>
+            <div class="stat">
+              <div id="spamCount" class="stat-value">0</div>
+              <div class="stat-label">Spam</div>
+            </div>
+            <div class="stat">
+              <div id="hamCount" class="stat-value">0</div>
+              <div class="stat-label">Ham</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card history-card">
+          <h3>Recent checks</h3>
+          <ul id="historyList" class="history-list"></ul>
+          <small class="muted">History stored locally (last 10).</small>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <div>Backend: <code>http://localhost:3000/check</code></div>
+      <div class="muted">Atharv Khunte — AI Spam Detector</div>
+    </footer>
+  </div>
+
+  <script src="script.js?v=20251123.final2"></script>
+</body>
+</html>
