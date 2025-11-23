@@ -1,0 +1,19 @@
+# OS
+Thumbs.db
+.DS_Store
+
+# Node
+node_modules/
+npm-debug.log
+
+# Build output
+build/
+*.exe
+*.obj
+*.o
+
+# Dataset (private)
+dataset/SMSSpamCollection
+
+# Logs
+*.log
