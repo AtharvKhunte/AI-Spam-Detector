@@ -216,7 +216,7 @@ Send message for classification.
 
 ---
 
-# 📸 Screenshots (replace with your images)
+# 📸 Screenshots
 
 <img width="1628" height="823" alt="image" src="https://github.com/user-attachments/assets/68e48585-383c-4a11-82d0-9fb9fb772cbb" />
 <img width="1058" height="548" alt="image" src="https://github.com/user-attachments/assets/1c229ace-6f0f-431b-bf1a-e509e9111e41" />
